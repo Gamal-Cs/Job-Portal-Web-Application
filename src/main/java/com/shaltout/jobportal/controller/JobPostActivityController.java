@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class JobPostActivityController {
     private final UsersService usersService;
 
-    @GetMapping("/dashboard")
+    @GetMapping("/dashboard/")
     public String searchJobs(Model model){
         Object currentUserProfile = usersService.getCurrentUserProfile();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(!(authentication instanceof AnonymousAuthenticationToken)){
             String currentUserName = authentication.getName();
-            model.addAttribute("userName", currentUserName);
+            model.addAttribute("username", currentUserName);
         }
-        model.addAttribute("currentUserProfile", currentUserProfile);
+        model.addAttribute("user", currentUserProfile);
         return "dashboard";
     }
 }

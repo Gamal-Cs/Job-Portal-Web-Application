@@ -26,7 +26,14 @@ public class RecruiterProfile {
     private  String company;
     @Column(nullable = true, length = 64)
     private String profilePhoto;
+    private String state;
     public RecruiterProfile(Users users){
         this.userId = users;
+    }
+
+    public String getPhotosImagePath() {
+        if (profilePhoto == null || userAccountId == 0) return null;
+
+        return "/photos-recruiter/" + userAccountId + "/" + profilePhoto;
     }
 }

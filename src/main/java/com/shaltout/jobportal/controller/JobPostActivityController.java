@@ -27,13 +27,23 @@ public class JobPostActivityController {
     public String searchJobs(Model model){
         Object currentUserProfile = usersService.getCurrentUserProfile();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(!(authentication instanceof AnonymousAuthenticationToken)){
+        System.out.println("Profile class: "
+                + currentUserProfile.getClass().getName());
+
+        System.out.println("Authorities: "
+                + authentication.getAuthorities());
+
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
             model.addAttribute("username", currentUserName);
-            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))){
-                List<RecruiterJobsDto> recruiterJobs = jobPostActivityService.
-                        getRecruiterJobs(((RecruiterProfile)currentUserProfile).getUserAccountId());
-                model.addAttribute("jobPost",recruiterJobs);
+
+            if (authentication.getAuthorities()
+                    .contains(new SimpleGrantedAuthority("Recruiter"))) {
+
+                List<RecruiterJobsDto> recruiterJobs = jobPostActivityService
+                        .getRecruiterJobs(((RecruiterProfile) currentUserProfile).getUserAccountId());
+
+                model.addAttribute("jobPost", recruiterJobs);
             }
         }
         model.addAttribute("user", currentUserProfile);

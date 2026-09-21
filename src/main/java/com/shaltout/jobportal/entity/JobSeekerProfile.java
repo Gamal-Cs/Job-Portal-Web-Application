@@ -10,9 +10,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
+@ToString
 public class JobSeekerProfile {
     @Id
-    private int userAccountId;
+    private Integer userAccountId;
 
     @OneToOne
     @JoinColumn(name = "user_account_id")
@@ -22,6 +23,7 @@ public class JobSeekerProfile {
     private String firstName;
     private String lastName;
     private String city;
+    private String state;
     private String country;
     private String workAuthorization;
     private String employmentType;
@@ -34,5 +36,13 @@ public class JobSeekerProfile {
 
     public JobSeekerProfile(Users users){
         this.userId = users;
+    }
+
+    @Transient
+    public String getPhotosImagePath(){
+        if(profilePhoto == null || userAccountId == null){
+            return null;
+        }
+        return "/photos/candidates/"+userAccountId+"/"+profilePhoto;
     }
 }

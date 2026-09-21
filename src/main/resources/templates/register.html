@@ -50,15 +50,6 @@
                                 method="post"
                         >
                             <div class="box-body bozero mx2p">
-<!--                                Error message display-->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div th:if="${error}" class="alert alert-danger" role="alert">
-                                                <p th:text="${error}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -96,15 +87,11 @@
                                                 class="form-control"
                                                 th:field="*{userTypeId}"
                                         >
-                                            <option value="" disabled selected>
-                                                Select User Type
-                                            </option>
-
-                                            <th:block th:each="userType : ${usersTypes}">
+                                            <th:block th:each="userType :${getAllTypes}">
                                                 <option
+                                                        th:text="${userType.userTypeName}"
                                                         th:value="${userType.userTypeId}"
-                                                        th:text="${userType.userTypeName}">
-                                                </option>
+                                                ></option>
                                             </th:block>
                                         </select>
                                     </div>

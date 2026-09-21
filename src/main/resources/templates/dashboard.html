@@ -71,6 +71,7 @@
             </li>
 
         </ul>
+
         <img
                 class="rounded-circle me-3"
                 height="50px"
@@ -78,6 +79,7 @@
                 th:if="${user.photosImagePath!=null}"
                 th:src="@{${user?.photosImagePath}}"
         />
+
         <label th:if="${user.firstName != null && user.lastName != null}"
                th:text="${user.firstName+' '+user.lastName}"
                class="nav-item nav-link px-2 me-3">
@@ -118,18 +120,18 @@
                                             th:text="'('+ @{${jobPost.totalCandidates}}+' Candidates Applied)'"
                                     >(xx candidates applied)</span
                                     >
-<!--                                    <span-->
-<!--                                            class="title-span"-->
-<!--                                            sec:authorize="hasAuthority('Job Seeker')"-->
-<!--                                            th:if="${jobPost.isActive == true}"-->
-<!--                                    >(Applied)</span-->
-<!--                                    >-->
-<!--                                    <span-->
-<!--                                            class="title-span"-->
-<!--                                            sec:authorize="hasAuthority('Job Seeker')"-->
-<!--                                            th:if="${jobPost.isSaved == true}"-->
-<!--                                    >(Saved)</span-->
-<!--                                    >-->
+                                    <span
+                                            class="title-span"
+                                            sec:authorize="hasAuthority('Job Seeker')"
+                                            th:if="${jobPost.isActive == true}"
+                                    >(Applied)</span
+                                    >
+                                    <span
+                                            class="title-span"
+                                            sec:authorize="hasAuthority('Job Seeker')"
+                                            th:if="${jobPost.isSaved == true}"
+                                    >(Saved)</span
+                                    >
                                 </label>
                             </div>
                             <div class="col-md-4 text-center">

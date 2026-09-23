@@ -6,10 +6,12 @@ import lombok.*;
 import java.io.Serializable;
 
 @Entity
-@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"userId", "job"})
+})
 @ToString
 public class JobSeekerSave implements Serializable {
 
